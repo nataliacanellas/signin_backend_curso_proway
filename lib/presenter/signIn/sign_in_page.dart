@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:trabalho_warren/presenter/signUp/sign_up_page.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({Key? key}) : super(key: key);
@@ -17,7 +18,7 @@ class SignInPage extends StatelessWidget {
                   'Sign in',
                   style: TextStyle(color: Colors.white, fontSize: 35),
                 ),
-                const SizedBox(height: 25),
+                const SizedBox(height: 35),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -76,7 +77,7 @@ class SignInPage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 45),
+                const SizedBox(height: 50),
                 const Text(
                   'or use your email account',
                   style: TextStyle(
@@ -89,22 +90,20 @@ class SignInPage extends StatelessWidget {
                   color: Colors.white,
                   child: TextFormField(
                     decoration: InputDecoration(
-                        label: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.email_outlined,
-                            color: Colors.grey,
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            'E-mail',
-                            style: TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      ),
-                    )),
+                        contentPadding: const EdgeInsets.all(10),
+                        label: Row(
+                          children: const [
+                            Icon(
+                              Icons.email_outlined,
+                              color: Colors.grey,
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'E-mail',
+                              style: TextStyle(color: Colors.grey),
+                            )
+                          ],
+                        )),
                   ),
                 ),
                 const SizedBox(height: 15),
@@ -112,22 +111,20 @@ class SignInPage extends StatelessWidget {
                   color: Colors.white,
                   child: TextFormField(
                     decoration: InputDecoration(
-                        label: Padding(
-                      padding: const EdgeInsets.all(12.0),
-                      child: Row(
-                        children: const [
-                          Icon(
-                            Icons.email_outlined,
-                            color: Colors.grey,
-                          ),
-                          SizedBox(width: 10),
-                          Text(
-                            'E-mail',
-                            style: TextStyle(color: Colors.grey),
-                          )
-                        ],
-                      ),
-                    )),
+                        contentPadding: const EdgeInsets.all(10),
+                        label: Row(
+                          children: const [
+                            Icon(
+                              Icons.lock_outline,
+                              color: Colors.grey,
+                            ),
+                            SizedBox(width: 10),
+                            Text(
+                              'Password',
+                              style: TextStyle(color: Colors.grey),
+                            )
+                          ],
+                        )),
                   ),
                 ),
                 const SizedBox(height: 10),
@@ -136,22 +133,52 @@ class SignInPage extends StatelessWidget {
                   child: const Text(
                     'Forgot your password?',
                     style: TextStyle(
+                      fontWeight: FontWeight.bold,
                       fontSize: 15,
                       color: Colors.grey,
                     ),
                   ),
                 ),
-                const SizedBox(height: 30),
+                const SizedBox(height: 50),
                 MaterialButton(
                   color: Colors.white,
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                   minWidth: 350,
                   onPressed: () {},
-                  child: const Text('SIGN IN'),
+                  child: const Text(
+                    'SIGN IN',
+                    style: TextStyle(
+                      fontSize: 17,
+                      color: Colors.deepPurple,
+                    ),
+                  ),
                 ),
-                const Text('Enter your personal details and start a journey with us'),
+                const SizedBox(height: 50),
+                const Text(
+                  'Enter your personal details \n and start a journey with us',
+                  style: TextStyle(
+                    fontSize: 17,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 25),
                 InkWell(
-                  onTap: () {},
-                  child: const Text('SIGN UP', style: TextStyle(decoration: TextDecoration.underline),),
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => const SignUpPage(),
+                      ),
+                    );
+                  },
+                  child: const Text(
+                    'SIGN UP',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      decoration: TextDecoration.underline,
+                      fontSize: 17,
+                      color: Colors.white,
+                    ),
+                  ),
                 )
               ],
             )),
