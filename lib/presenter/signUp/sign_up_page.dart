@@ -1,13 +1,30 @@
+import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
+import 'package:trabalho_warren/model/user_model.dart';
 
 import 'package:trabalho_warren/presenter/signIn/sign_in_page.dart';
 import 'package:trabalho_warren/presenter/success_page.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   const SignUpPage({Key? key}) : super(key: key);
 
   @override
+  State<SignUpPage> createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  @override
   Widget build(BuildContext context) {
+    Dio dio = Dio();
+
+    Future<void> post(UserModel user) async {
+      await dio.post('http://192.168.0.18/api/usuario', data: user.toJson());
+    }
+
+    TextEditingController? controllerName;
+    TextEditingController? controllerEmail;
+    TextEditingController? controllerPassword;
+
     return Scaffold(
       backgroundColor: Colors.deepPurple,
       body: Center(
@@ -91,6 +108,7 @@ class SignUpPage extends StatelessWidget {
                 ColoredBox(
                   color: Colors.white,
                   child: TextFormField(
+                    controller: controllerName,
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(10),
                         label: Row(
@@ -112,6 +130,7 @@ class SignUpPage extends StatelessWidget {
                 ColoredBox(
                   color: Colors.white,
                   child: TextFormField(
+                    controller: controllerEmail,
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(10),
                         label: Row(
@@ -133,6 +152,7 @@ class SignUpPage extends StatelessWidget {
                 ColoredBox(
                   color: Colors.white,
                   child: TextFormField(
+                    controller: controllerPassword,
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(10),
                         label: Row(
@@ -154,6 +174,7 @@ class SignUpPage extends StatelessWidget {
                 ColoredBox(
                   color: Colors.white,
                   child: TextFormField(
+                    controller: controllerPassword,
                     decoration: InputDecoration(
                         contentPadding: const EdgeInsets.all(10),
                         label: Row(
@@ -182,6 +203,12 @@ class SignUpPage extends StatelessWidget {
                         builder: (context) => const SuccessPage(),
                       ),
                     );
+
+                    UserModel user = UserModel(
+                        name: controllerName!.text,
+                        email: controllerEmail!.text,
+                        senha: controllerPassword!.text);
+                    post(user);
                   },
                   child: const Text(
                     'SIGN UP',
